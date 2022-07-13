@@ -15,7 +15,19 @@ app.config(function($routeProvider) {
 });
 
 app.controller("postCtrl", function ($scope) {
-    debugger;
+    $scope.checkLogin = function() {
+        debugger;
+        logStatus = netlifyIdentity.currentUser();
+        if (logStatus == null) {
+            window.location.replace('#!home');
+            console.log('not logged in')
+        }
+        else {
+            console.log('logged in');
+        }
+      };
+
+$scope.checkLogin();
 });
 
 window.onload = function() {
@@ -43,17 +55,7 @@ netlifyIdentity.on('login', () => {
     netlifyIdentity.close();
   });
 
-  function checkLogin() {
-    debugger;
-    logStatus = netlifyIdentity.currentUser();
-    if (logStatus == null) {
-        window.location.replace('#!home');
-        console.log('not logged in')
-    }
-    else {
-        console.log('logged in');
-    }
-  }
+  
 
 
 
