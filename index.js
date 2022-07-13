@@ -19,7 +19,7 @@ netlifyIdentity.on('init', () => {
 netlifyIdentity.on('login', () => {
     if (initUser == null) {
         // window.location.replace('blog');
-        window.location.replace("blog.html");
+        window.location.replace('posts');
     }
     netlifyIdentity.close();
   });
