@@ -19,8 +19,22 @@ netlifyIdentity.on('init', () => {
 netlifyIdentity.on('login', () => {
     if (initUser == null) {
         window.location.replace('#!posts');
-        console.log(jwt);
     }
     netlifyIdentity.close();
   });
+
+
+  
+  function checkLogin() {
+    logStatus = netlifyIdentity.currentUser();
+    if (logStatus == null) {
+        console.log('not logged in')
+        window.location.replace('#!home');
+    }
+    else {
+        console.log('logged in');
+    }
+  }
+  window.onload = checkLogin;
+
 
