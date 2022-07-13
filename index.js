@@ -7,4 +7,7 @@ netlifyIdentity.on('login', () => {
         window.location.replace("https://navid-login-test.netlify.app/blog.html")
     }
     netlifyIdentity.close();
+    else if (window.location.href === "https://navid-login-test.netlify.app/blog.html") {
+        console.log(test);
+    }
   });
