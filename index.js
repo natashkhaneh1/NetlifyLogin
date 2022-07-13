@@ -23,14 +23,8 @@ netlifyIdentity.on('login', () => {
     netlifyIdentity.close();
   });
 
-  netlifyIdentity.on('logout', () => {
-    if (initUser == null) {
-        window.location.replace('#!home');
-    }
-    netlifyIdentity.close();
-  });
-
   function checkLogin() {
+    debugger;
     logStatus = netlifyIdentity.currentUser();
     if (logStatus == null) {
         window.location.replace('#!home');
@@ -40,6 +34,7 @@ netlifyIdentity.on('login', () => {
         console.log('logged in');
     }
   }
-  window.onload = checkLogin;
+
+  window.onload = checkLogin();
 
 
