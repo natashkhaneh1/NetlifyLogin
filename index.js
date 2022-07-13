@@ -6,7 +6,8 @@ app.config(function($routeProvider) {
         templateUrl : "dashboard.html"
     })
     .when("/home", {
-        templateUrl : "dashboard.html"
+        templateUrl : "dashboard.html",
+        controller: "homeCtrl"
     })
     .when("/posts", {
         templateUrl : "blog.html",
@@ -16,47 +17,47 @@ app.config(function($routeProvider) {
 
 app.controller("postCtrl", function ($scope) {
     $scope.checkLogin = function() {
-        debugger;
         logStatus = netlifyIdentity.currentUser();
         if (logStatus == null) {
             window.location.replace('#!home');
-            console.log('not logged in')
         }
         else {
-            console.log('logged in');
         }
       };
 
 $scope.checkLogin();
 });
 
-window.onload = function() {
-    debugger;
-    logStatus = netlifyIdentity.currentUser();
-    if (logStatus == null) {
-        window.location.replace('#!home');
-        console.log('not logged in')
-    }
-    else {
-        console.log('logged in');
-    }
-  };
+app.controller("homeCtrl", function ($scope) {
+    $scope.writeLogStatus = function() {
+        logStatus = netlifyIdentity.currentUser();
+        if (logStatus == null) {
+            let y = "&nbspare not logged in. Please log in to continue.";
+            document.getElementById("statusText").innerHTML = y;
+        }
+        else {
+            let y = "&nbspare logged in.";
+            document.getElementById("statusText").innerHTML = y;
+        }
+      };
+
+$scope.writeLogStatus();
+});
 
 netlifyIdentity.on('init', () => {
   initUser = netlifyIdentity.currentUser();
-  debugger;
 });
 
 netlifyIdentity.on('login', () => {
     if (initUser != null) {
         window.location.replace('#!posts');
-        checkLogin();
     }
     netlifyIdentity.close();
   });
 
-  
-
-
-
-
+  netlifyIdentity.on('logout', () => {
+    if (initUser == null) {
+        window.location.replace('#!home');
+    }
+    netlifyIdentity.close();
+  });
