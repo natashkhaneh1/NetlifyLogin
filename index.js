@@ -9,8 +9,13 @@ app.config(function($routeProvider) {
         templateUrl : "dashboard.html"
     })
     .when("/posts", {
-        templateUrl : "blog.html"
+        templateUrl : "blog.html",
+        controller: "postCtrl"
     });
+});
+
+app.controller("postCtrl", function ($scope) {
+    debugger;
 });
 
 window.onload = function() {
@@ -33,6 +38,7 @@ netlifyIdentity.on('init', () => {
 netlifyIdentity.on('login', () => {
     if (initUser != null) {
         window.location.replace('#!posts');
+        checkLogin();
     }
     netlifyIdentity.close();
   });
