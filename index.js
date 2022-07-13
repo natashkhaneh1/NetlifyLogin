@@ -1,9 +1,10 @@
 netlifyIdentity.on('init', () => {
-    initUser = netlifyIdentity.currentUser();
-  });
+  initUser = netlifyIdentity.currentUser();
+});
 netlifyIdentity.on('login', () => {
     if (initUser == null) {
-        window.location.href= "navid-login-test.netlify.app/blog.html";
+        // window.location.replace('blog');
+        window.location.replace("https://navid-login-test.netlify.app/blog.html")
     }
     netlifyIdentity.close();
   });
