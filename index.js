@@ -13,6 +13,18 @@ app.config(function($routeProvider) {
     });
 });
 
+window.onload = function() {
+    debugger;
+    logStatus = netlifyIdentity.currentUser();
+    if (logStatus == null) {
+        window.location.replace('#!home');
+        console.log('not logged in')
+    }
+    else {
+        console.log('logged in');
+    }
+  };
+
 netlifyIdentity.on('init', () => {
   initUser = netlifyIdentity.currentUser();
   debugger;
@@ -37,6 +49,6 @@ netlifyIdentity.on('login', () => {
     }
   }
 
-  window.onload = checkLogin();
+
 
 
