@@ -15,7 +15,9 @@ app.config(function($routeProvider) {
 
 netlifyIdentity.on('init', () => {
   initUser = netlifyIdentity.currentUser();
+  debugger;
 });
+
 netlifyIdentity.on('login', () => {
     if (initUser != null) {
         window.location.replace('#!posts');
