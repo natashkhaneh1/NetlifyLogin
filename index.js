@@ -17,19 +17,24 @@ netlifyIdentity.on('init', () => {
   initUser = netlifyIdentity.currentUser();
 });
 netlifyIdentity.on('login', () => {
-    if (initUser == null) {
+    if (initUser != null) {
         window.location.replace('#!posts');
     }
     netlifyIdentity.close();
   });
 
+  netlifyIdentity.on('logout', () => {
+    if (initUser == null) {
+        window.location.replace('#!home');
+    }
+    netlifyIdentity.close();
+  });
 
-  
   function checkLogin() {
     logStatus = netlifyIdentity.currentUser();
     if (logStatus == null) {
-        console.log('not logged in')
         window.location.replace('#!home');
+        console.log('not logged in')
     }
     else {
         console.log('logged in');
