@@ -3,7 +3,7 @@ netlifyIdentity.on('init', () => {
   });
 netlifyIdentity.on('login', () => {
     if (initUser == null) {
-        window.location.replace('blog');
+        window.location.href= "navid-login-test.netlify.app/blog.html";
     }
     netlifyIdentity.close();
   });
