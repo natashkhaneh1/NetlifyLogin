@@ -4,7 +4,7 @@ netlifyIdentity.on('init', () => {
 netlifyIdentity.on('login', () => {
     if (initUser == null) {
         // window.location.replace('blog');
-        window.location = "navid-login-test.netlify.app/blog.html";
+        window.location.replace("navid-login-test.netlify.app/blog.html");
     }
     netlifyIdentity.close();
   });
