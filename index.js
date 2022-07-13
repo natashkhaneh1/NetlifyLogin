@@ -19,7 +19,8 @@ netlifyIdentity.on('init', () => {
 netlifyIdentity.on('login', () => {
     if (initUser == null) {
         window.location.replace('#!posts');
+        console.log(jwt);
     }
     netlifyIdentity.close();
   });
-  console.log(jwt);
+
