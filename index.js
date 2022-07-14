@@ -3,7 +3,8 @@ let app = angular.module("loginApp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "dashboard.html"
+        templateUrl : "dashboard.html",
+        controller: "homeCtrl"
     })
     .when("/home", {
         templateUrl : "dashboard.html",
@@ -32,11 +33,11 @@ app.controller("homeCtrl", function ($scope) {
     $scope.writeLogStatus = function() {
         logStatus = netlifyIdentity.currentUser();
         if (logStatus == null) {
-            let y = "&nbspare not logged in. Please log in to continue.";
+            let y = "&nbsp You are not logged in. Please log in to continue.";
             document.getElementById("statusText").innerHTML = y;
         }
         else {
-            let y = "&nbspare logged in.";
+            let y = "&nbsp You are logged in.";
             document.getElementById("statusText").innerHTML = y;
         }
       };
@@ -50,7 +51,7 @@ netlifyIdentity.on('init', () => {
 
 netlifyIdentity.on('login', () => {
     if (initUser != null) {
-        window.location.replace('#!posts');
+        window.location.replace('#!home');
     }
     netlifyIdentity.close();
   });
